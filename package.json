@@ -1,0 +1,26 @@
+{
+  "name": "fem-interactive_card",
+  "version": "1.0.0",
+  "description": "![Design preview for the Interactive card details form coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudimediaz/fem-interactive_card.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudimediaz/fem-interactive_card/issues"
+  },
+  "homepage": "https://github.com/rudimediaz/fem-interactive_card#readme",
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "sass": "^1.54.7",
+    "vite": "^3.0.9"
+  }
+}
