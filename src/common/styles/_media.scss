@@ -1,0 +1,7 @@
+@mixin Screen($minWidth: 100vw) {
+  @media (min-width: $minWidth) {
+    @content;
+  }
+}
+
+$desktop: 1024px;
