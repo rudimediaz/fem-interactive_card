@@ -1,0 +1,29 @@
+@use "../../common/styles/media" as media;
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  background-image: url(/images/bg-main-mobile.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include media.Screen(media.$desktop) {
+    background-image: url(/images/bg-main-desktop.png);
+  }
+
+  &__item {
+    position: relative;
+
+    &_upper {
+      grid-column-start: 6;
+      grid-row-start: 3;
+    }
+
+    &_lower {
+      grid-column-start: 2;
+      grid-row-start: 9;
+    }
+  }
+}

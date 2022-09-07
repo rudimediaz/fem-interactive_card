@@ -1,0 +1,22 @@
+@use "../../common/styles/media" as media;
+
+.container {
+  // base
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  // elements
+  &__hero {
+    grid-area: 1/1/2/4;
+    @include media.Screen(media.$desktop) {
+      grid-area: 1/1/4/2;
+    }
+  }
+
+  &__main {
+    grid-area: 2/1/4/4;
+    @include media.Screen(media.$desktop) {
+      grid-area: 1/2/4/4;
+    }
+  }
+}
