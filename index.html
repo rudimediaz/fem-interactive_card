@@ -1,51 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive card details form</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
 
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
+    <title>Frontend Mentor | Interactive card details form</title>
 
-  000
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <link rel="stylesheet" href="/src/styles.scss" />
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- page content -->
+      <main>
+        <div class="container">
+          <div class="container__hero hero">
+            <div class="hero__item hero__item_upper">
+              <!-- card back side -->
+              <div class="card-image card-image_back card-image-back">
+                <div class="card-image-back__cvc card-image-cvc">
+                  000
+                </div>
+              </div>
+            </div>
+            <div class="hero__item hero__item_lower">
+              <!-- card front side  -->
+              <div
+                class="card-image card-image_front card-image-front"
+              >
+                <div class="card-image-front__logo">
+                  <img
+                    src="/images/card-logo.svg"
+                    alt="credit card logo"
+                  />
+                </div>
+                <div class="card-image-front__number">
+                  0000 0000 0000 0000
+                </div>
+                <div
+                  class="card-image-front__details card-image-details"
+                >
+                  <div class="card-image-details__name">
+                    Jane Appleseed
+                  </div>
+                  <div class="card-image-details__exp">00/00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container__main main"></div>
+        </div>
+      </main>
 
-  Cardholder Name
-  e.g. Jane Appleseed
+      <!-- footer -->
+      <footer>
+        <div class="attribution">
+          Challenge by
+          <a
+            href="https://www.frontendmentor.io?ref=challenge"
+            target="_blank"
+            >Frontend Mentor</a
+          >. Coded by <a href="#">Your Name Here</a>.
+        </div>
+      </footer>
+    </div>
+    <template>
+      0000 0000 0000 0000 Jane Appleseed 00/00 000 Cardholder Name
+      e.g. Jane Appleseed Card Number e.g. 1234 5678 9123 0000 Exp.
+      Date (MM/YY) MM YY CVC e.g. 123 Confirm
 
-  Card Number
-  e.g. 1234 5678 9123 0000
+      <!-- Completed state start -->
 
-  Exp. Date (MM/YY)
-  MM
-  YY
-
-  CVC
-  e.g. 123
-
-  Confirm
-
-  <!-- Completed state start -->
-
-  Thank you!
-  We've added your card details
-  Continue
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+      Thank you! We've added your card details Continue
+    </template>
+  </body>
 </html>
