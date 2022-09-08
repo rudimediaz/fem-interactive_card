@@ -81,7 +81,7 @@
           </div>
           <div class="container__main main">
             <div class="main__item app">
-              <interactive-form>
+              <interactive-form status="completed">
                 <div class="form" data-view-id="active">
                   <form
                     action="#!"
@@ -206,7 +206,25 @@
                   </form>
                 </div>
                 <div class="feedback" data-view-id="completed">
-                  feedback
+                  <div class="feedback__message feedback-message">
+                    <div class="feedback-message__icon">
+                      <img
+                        src="/images/icon-complete.svg"
+                        alt="icon complete"
+                      />
+                    </div>
+                    <div class="feedback-message__header">
+                      Thank you!
+                    </div>
+                    <div class="feedback-message__body">
+                      We've added your card details
+                    </div>
+                  </div>
+                  <div class="feedback__button feedback-ctn-button">
+                    <button class="button button_primary">
+                      Continue
+                    </button>
+                  </div>
                 </div>
               </interactive-form>
             </div>

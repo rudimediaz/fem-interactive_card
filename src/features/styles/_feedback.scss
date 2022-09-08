@@ -1,0 +1,32 @@
+.feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feedback-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+
+  &__icon {
+    padding-block: 1rem;
+  }
+
+  &__header {
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  &__body {
+    color: var(--palette-2);
+  }
+}
+
+.feedback-ctn-button {
+  display: flex;
+  flex-direction: column;
+}
