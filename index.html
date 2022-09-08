@@ -29,7 +29,7 @@
     <title>Frontend Mentor | Interactive card details form</title>
 
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <link rel="stylesheet" href="/src/styles.scss" />
+
     <style>
       .attribution {
         font-size: 11px;
@@ -79,7 +79,138 @@
               </div>
             </div>
           </div>
-          <div class="container__main main"></div>
+          <div class="container__main main">
+            <div class="main__item app">
+              <interactive-form>
+                <div class="form" data-view-id="active">
+                  <form
+                    action="#!"
+                    style="display: contents"
+                    autocomplete="off"
+                  >
+                    <div class="form__field-name field-group">
+                      <label
+                        for="inp-name"
+                        class="field-group__label field-group_uppercase"
+                        >Cardholder Name</label
+                      >
+                      <span class="field-group__input-wrapper">
+                        <input
+                          type="text"
+                          id="inp-name"
+                          placeholder="e.g. Jane Appleseed"
+                        />
+                        <span></span>
+                      </span>
+                      <div class="field-message">
+                        Lorem ipsum dolor sit amet consectetur
+                        adipisicing.
+                      </div>
+                    </div>
+                    <!-- row breaks -->
+                    <!-- cc number -->
+                    <div class="form__field-number field-group">
+                      <label
+                        for="inp-cc-number"
+                        class="field-group__label field-group_uppercase"
+                        >Card Number</label
+                      >
+                      <span class="field-group__input-wrapper">
+                        <input
+                          type="text"
+                          id="inp-cc-number"
+                          placeholder="e.g. 1234 5678 9123 0000"
+                        />
+                        <span></span>
+                      </span>
+                      <div class="field-message">
+                        Lorem ipsum dolor sit amet consectetur
+                        adipisicing.
+                      </div>
+                    </div>
+                    <!-- row break  -->
+                    <!-- cc exp -->
+                    <div class="form__field-exp field-group">
+                      <fieldset style="display: contents">
+                        <legend
+                          class="field-group__label field-group_uppercase"
+                        >
+                          Exp. Date (MM/YY)
+                        </legend>
+                        <div
+                          class="field-group__part field-group-part"
+                        >
+                          <span
+                            class="field-group__input-wrapper field-group-part__mm"
+                          >
+                            <label
+                              for="inp-cc-mm"
+                              hidden
+                              aria-hidden="true"
+                              >month</label
+                            >
+                            <input
+                              type="text"
+                              id="inp-cc-mm"
+                              placeholder="MM"
+                            />
+                            <span></span>
+                          </span>
+                          <span
+                            class="field-group__input-wrapper field-group-part__yy"
+                          >
+                            <label
+                              for="inp-cc-mm"
+                              hidden
+                              aria-hidden="true"
+                              >month</label
+                            >
+                            <input
+                              type="text"
+                              id="inp-cc-yy"
+                              placeholder="YY"
+                            />
+                            <span></span>
+                          </span>
+                        </div>
+                        <div class="field-message">
+                          Lorem ipsum dolor sit amet.
+                        </div>
+                      </fieldset>
+                    </div>
+                    <!-- break  -->
+                    <!-- cc cvc -->
+                    <div class="form__field-cvc field-group">
+                      <label
+                        for="inp-cc-cvc"
+                        class="field-group__label field-group_uppercase"
+                        >CVC</label
+                      >
+                      <span class="field-group__input-wrapper">
+                        <input
+                          type="text"
+                          id="inp-cc-cvc"
+                          placeholder="e.g. 123"
+                        />
+                        <span></span>
+                      </span>
+                      <div class="field-message">
+                        Lorem ipsum dolor sit amet.
+                      </div>
+                    </div>
+                    <div class="form__field-submit field-group">
+                      <button class="button button_primary">
+                        Confirm
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="feedback" data-view-id="completed">
+                  feedback
+                </div>
+              </interactive-form>
+            </div>
+          </div>
         </div>
       </main>
 
@@ -104,5 +235,6 @@
 
       Thank you! We've added your card details Continue
     </template>
+    <script src="/src/main.js" type="module"></script>
   </body>
 </html>

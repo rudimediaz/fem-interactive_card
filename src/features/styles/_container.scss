@@ -20,3 +20,12 @@
     }
   }
 }
+
+.main {
+  margin-top: 4rem;
+
+  &__item {
+    margin-inline: auto;
+    width: min(95vw, 375px - 1rem);
+  }
+}
