@@ -23,7 +23,7 @@ export class InteractiveForm extends HTMLElement {
   }
 
   get status() {
-    return this.getAttribute("status") || ACTIVE;
+    return this.getAttribute("status");
   }
 
   setActive() {
@@ -36,7 +36,10 @@ export class InteractiveForm extends HTMLElement {
 
   connectedCallback() {
     //
-    this.setActive();
+
+    if (!this.status) {
+      this.setActive();
+    }
     setSlotting.call(this);
   }
 
