@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/rudimediaz/fem-interactive_card#readme",
   "devDependencies": {
+    "postcss": "^8.4.16",
+    "postcss-preset-env": "^7.8.1",
     "prettier": "^2.7.1",
     "sass": "^1.54.7",
     "vite": "^3.0.9"
