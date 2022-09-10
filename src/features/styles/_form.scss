@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(24, 1fr);
   grid-template-rows: repeat(4, minmax(4rem, max-content));
+  row-gap: 0.5rem;
 
   &__field-name {
     grid-area: 1/1/2/-1;
@@ -55,11 +56,17 @@
       outline: none;
       z-index: 1;
 
+      &:focus:invalid + span,
+      &:invalid + span {
+        opacity: 1;
+        background-color: var(--palette-invalid);
+      }
+
       &:focus {
         outline: none;
       }
 
-      &:focus + span {
+      &:focus:not(&:invalid) + span {
         opacity: 1;
         background: linear-gradient(
           to right,
