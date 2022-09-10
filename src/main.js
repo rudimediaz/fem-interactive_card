@@ -73,6 +73,7 @@ function handleFocusOut(ev) {
     const isValid = this.fieldEl.checkValidity();
 
     if (isValid) {
+      setTextContent.call(this.messageEl, "");
       classListChange.call(
         this.messageEl,
         removeInvalidClassAction()
