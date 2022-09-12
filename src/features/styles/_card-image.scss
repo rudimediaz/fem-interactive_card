@@ -56,6 +56,17 @@ $embos-color: rgba(255, 255, 255, 0.265);
   font-size: calc(var(--text-base) - 30%);
   font-weight: 300;
   letter-spacing: 1.5px;
+
+  &__name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 20ch;
+  }
+
+  &__exp {
+    display: flex;
+  }
 }
 
 .card-image-back {

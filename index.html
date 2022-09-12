@@ -49,7 +49,11 @@
             <div class="hero__item hero__item_upper">
               <!-- card back side -->
               <div class="card-image card-image_back card-image-back">
-                <div class="card-image-back__cvc card-image-cvc">
+                <div
+                  class="card-image-back__cvc card-image-cvc display-cc"
+                  id="display-cc-cvc"
+                  data-default-value="000"
+                >
                   000
                 </div>
               </div>
@@ -65,16 +69,38 @@
                     alt="credit card logo"
                   />
                 </div>
-                <div class="card-image-front__number">
+                <div
+                  class="card-image-front__number display-cc"
+                  id="display-cc-number"
+                  data-default-value="0000 0000 0000 0000"
+                >
                   0000 0000 0000 0000
                 </div>
                 <div
                   class="card-image-front__details card-image-details"
                 >
-                  <div class="card-image-details__name">
+                  <div
+                    class="card-image-details__name display-cc"
+                    id="display-cc-holder"
+                    data-default-value="Jane Appleseed"
+                  >
                     Jane Appleseed
                   </div>
-                  <div class="card-image-details__exp">00/00</div>
+                  <div class="card-image-details__exp">
+                    <span
+                      class="display-cc"
+                      id="display-cc-mm"
+                      data-default-value="00"
+                      >00</span
+                    >
+                    <span>/</span>
+                    <span
+                      class="display-cc"
+                      id="display-cc-yy"
+                      data-default-value="00"
+                      >00</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -87,6 +113,8 @@
                     action="#!"
                     style="display: contents"
                     autocomplete="off"
+                    id="form-cc"
+                    data-message-blank="Can't be blank"
                   >
                     <div class="form__field-name field-group">
                       <label
@@ -101,13 +129,13 @@
                           placeholder="e.g. Jane Appleseed"
                           class="cc-field"
                           name="holder"
+                          aria-required="true"
+                          data-message-for="msg-name"
+                          data-display-for="display-cc-holder"
                         />
                         <span></span>
                       </span>
-                      <div class="field-message" id="msg-name">
-                        Lorem ipsum dolor sit amet consectetur
-                        adipisicing.
-                      </div>
+                      <div class="field-message" id="msg-name"></div>
                     </div>
                     <!-- row breaks -->
                     <!-- cc number -->
@@ -124,8 +152,13 @@
                           placeholder="e.g. 1234 5678 9123 0000"
                           class="cc-field"
                           name="cc_number"
-                          pattern="^\d+$"
+                          pattern="^[\d\s]+$"
                           data-message-for="msg-cc-number"
+                          data-message-pattern="Wrong format, numbers only"
+                          data-display-for="display-cc-number"
+                          minlength="19"
+                          maxlength="19"
+                          aria-required="true"
                         />
                         <span></span>
                       </span>
@@ -161,6 +194,12 @@
                               placeholder="MM"
                               class="cc-field"
                               name="exp_month"
+                              data-message-for="msg-exp"
+                              minlength="2"
+                              maxlength="2"
+                              pattern="^\d+$"
+                              data-message-pattern="Wrong format, numbers only"
+                              data-display-for="display-cc-mm"
                             />
                             <span></span>
                           </span>
@@ -179,13 +218,17 @@
                               placeholder="YY"
                               class="cc-field"
                               name="exp_yy"
+                              data-message-for="msg-exp"
+                              minlength="2"
+                              maxlength="2"
+                              pattern="^\d+$"
+                              data-message-pattern="Wrong format, numbers only"
+                              data-display-for="display-cc-yy"
                             />
                             <span></span>
                           </span>
                         </div>
-                        <div class="field-message">
-                          Lorem ipsum dolor sit amet.
-                        </div>
+                        <div class="field-message" id="msg-exp"></div>
                       </fieldset>
                     </div>
                     <!-- break  -->
@@ -203,15 +246,22 @@
                           placeholder="e.g. 123"
                           class="cc-field"
                           name="cvc"
+                          data-message-for="msg-cvc"
+                          minlength="3"
+                          maxlength="3"
+                          pattern="^\d+$"
+                          data-message-pattern="Wrong format, numbers only"
+                          data-display-for="display-cc-cvc"
                         />
                         <span></span>
                       </span>
-                      <div class="field-message">
-                        Lorem ipsum dolor sit amet.
-                      </div>
+                      <div class="field-message" id="msg-cvc"></div>
                     </div>
                     <div class="form__field-submit field-group">
-                      <button class="button button_primary">
+                      <button
+                        class="button button_primary"
+                        id="inp-submit"
+                      >
                         Confirm
                       </button>
                     </div>
@@ -233,7 +283,10 @@
                     </div>
                   </div>
                   <div class="feedback__button feedback-ctn-button">
-                    <button class="button button_primary">
+                    <button
+                      class="button button_primary"
+                      id="inp-continue"
+                    >
                       Continue
                     </button>
                   </div>

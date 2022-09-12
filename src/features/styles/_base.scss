@@ -54,5 +54,9 @@ footer {
   &_primary {
     background-color: var(--palette-3);
     color: var(--palette-0);
+
+    &:hover {
+      background-color: var(--palette-2);
+    }
   }
 }

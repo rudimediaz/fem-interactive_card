@@ -1,133 +1,117 @@
 import "./styles.scss";
 import { InteractiveForm } from "./features/components/interactive-form";
 
-/**
- *
- * @typedef {Object} FieldElement
- * @property { HTMLInputElement } fieldEl
- * @property { HTMLElement } messageEl
- * @property { string } patternErrorMessage
- */
-
-const ccNumberInputEl = document.getElementById("inp-cc-number");
-const ccNumberMessageEl = document.getElementById(
-  ccNumberInputEl.dataset.messageFor
-);
-/**@type {FieldElement} */
-const ccFieldElement = {
-  fieldEl: ccNumberInputEl,
-  messageEl: ccNumberMessageEl,
-  patternErrorMessage: "Wrong format, number only",
-};
-
 customElements.define("interactive-form", InteractiveForm);
+const confirmButton = document.getElementById("inp-submit");
+const inputs = document.querySelectorAll(".cc-field");
+const displays = document.querySelectorAll(".display-cc");
+const interactiveForm = document.querySelector("interactive-form");
+const continueButton = document.getElementById("inp-continue");
+const form = document.querySelector("#form-cc");
 
-ccNumberInputEl.addEventListener(
-  "input:valid",
-  handleValid.bind(ccFieldElement)
-);
-ccNumberInputEl.addEventListener(
-  "input:invalid",
-  handleInvalid.bind(ccFieldElement)
-);
-ccNumberInputEl.addEventListener(
-  "input",
-  handleInput.bind(ccFieldElement)
-);
+document
+  .querySelector("#form-cc")
+  .addEventListener("submit", function (ev) {
+    ev.preventDefault();
+  });
 
-ccNumberInputEl.addEventListener(
-  "blur",
-  handleFocusOut.bind(ccFieldElement)
-);
-
-/**
- * @this FieldElement
- * @param { InputEvent } ev
- */
-function handleInput(ev) {
-  if (this.fieldEl.validity.patternMismatch) {
-    ev.target.dispatchEvent(new CustomEvent("input:invalid"));
-  } else {
-    ev.target.dispatchEvent(new CustomEvent("input:valid"));
-  }
-}
-
-/**
- * @this FieldElement
- * @param { InputEvent } ev
- */
-function handleInvalid(ev) {
-  setTextContent.call(this.messageEl, this.patternErrorMessage);
-  classListChange.call(this.messageEl, addInvalidClassAction());
-}
-
-/**
- * @this FieldElement
- * @param {Event} ev
- */
-function handleFocusOut(ev) {
-  if (!ev.target.value) {
-    setTextContent.call(this.messageEl, `Can't be blank`);
-    classListChange.call(this.messageEl, addInvalidClassAction());
-  } else {
-    const isValid = this.fieldEl.checkValidity();
-
-    if (isValid) {
-      setTextContent.call(this.messageEl, "");
-      classListChange.call(
-        this.messageEl,
-        removeInvalidClassAction()
-      );
+displays.forEach((el) => {
+  el.addEventListener("userinput", function (ev) {
+    if (!ev.detail.value) {
+      this.textContent = this.dataset.defaultValue || "";
     } else {
-      ev.target.dispatchEvent(new CustomEvent("input:invalid"));
+      this.textContent = ev.detail.value;
     }
+  });
+});
+
+inputs.forEach((inputField) => {
+  inputField.addEventListener("input", function (ev) {
+    if (this.validity.valid) {
+      resetMessage.call(this);
+    }
+
+    this.dispatchEvent(
+      new CustomEvent("userinput", { bubbles: false })
+    );
+
+    queueMicrotask(() => {
+      this.checkValidity();
+    });
+  });
+
+  inputField.addEventListener("userinput", function (ev) {
+    const displayTarget = document.getElementById(
+      this.dataset.displayFor
+    );
+
+    displayTarget.dispatchEvent(
+      new CustomEvent("userinput", {
+        detail: { value: ev.target.value },
+      })
+    );
+  });
+
+  inputField.addEventListener("blur", function (ev) {
+    if (this.validity.valid) {
+      resetMessage.call(this);
+    }
+    if (!ev.target.value) {
+      this.setAttribute("required", "");
+    } else {
+      this.removeAttribute("required");
+    }
+    this.checkValidity();
+  });
+
+  inputField.addEventListener("invalid", function (ev) {
+    const target = document.getElementById(this.dataset.messageFor);
+
+    if (this.validity.valueMissing) {
+      target.textContent = form.dataset.messageBlank;
+    } else if (this.validity.patternMismatch) {
+      target.textContent = this.dataset.messagePattern || "";
+    } else if (this.validity.tooShort) {
+      target.textContent = "Too short";
+    }
+  });
+});
+
+confirmButton.addEventListener("click:aftercheck", function (ev) {
+  if (ev.detail.inputValidities.every((valid) => valid)) {
+    interactiveForm.setComplete();
   }
-}
+});
 
-/**
- * @this HTMLInputElement
- * @param { InputEvent } ev
- */
-function handleValid(ev) {
-  classListChange.call(this.messageEl, removeInvalidClassAction());
-}
+confirmButton.addEventListener("click", function (ev) {
+  ev.preventDefault();
+  inputs.forEach((input) => input.dispatchEvent(new Event("blur")));
+  queueMicrotask(() => {
+    this.dispatchEvent(
+      new CustomEvent("click:aftercheck", {
+        detail: {
+          inputValidities: Array.from(inputs).map(
+            (input) => input.validity.valid
+          ),
+        },
+      })
+    );
+  });
+});
 
-/**
- * @typedef { Object } ClassListAction
- * @property { 'add' | 'remove' } type
- * @property { name } className
- */
+continueButton.addEventListener("click", function () {
+  interactiveForm.setActive();
+  queueMicrotask(() => {
+    inputs.forEach((input) => {
+      input.value = "";
+      input.dispatchEvent(
+        new CustomEvent("userinput", { bubbles: false })
+      );
+    });
+  });
+});
 
-/**
- *
- * @this HTMLElement
- * @param {ClassListAction} action
- */
-function classListChange(action) {
-  switch (action.type) {
-    case "add":
-      this.classList.add(action.className);
-      break;
-    case "remove":
-      this.classList.remove(action.className);
-      break;
-    default:
-      this.classList.toggle(action.className);
-  }
-}
-
-/**
- * @this HTMLElement
- * @param {string} value
- */
-function setTextContent(value) {
-  this.textContent = value;
-}
-
-function removeInvalidClassAction() {
-  return { type: "remove", className: "field-message_invalid" };
-}
-
-function addInvalidClassAction() {
-  return { type: "add", className: "field-message_invalid" };
+function resetMessage() {
+  document.querySelector("#" + this.dataset.messageFor).textContent =
+    "";
 }

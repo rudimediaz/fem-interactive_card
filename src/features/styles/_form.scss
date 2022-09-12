@@ -44,8 +44,9 @@
     position: relative;
     border-radius: 5px;
     background: var(--palette-1);
-    padding: 1.5pt;
+    padding: 2px;
     overflow: hidden;
+    border: none;
 
     & input {
       position: relative;
@@ -56,8 +57,8 @@
       outline: none;
       z-index: 1;
 
-      &:focus:invalid + span,
-      &:invalid + span {
+      &:invalid + span,
+      &:focus:invalid + span {
         opacity: 1;
         background-color: var(--palette-invalid);
       }
@@ -94,11 +95,6 @@
 
 .field-message {
   font-size: 12px;
-  visibility: collapse;
-
-  &_invalid {
-    visibility: visible;
-  }
 }
 
 .field-group-part {
